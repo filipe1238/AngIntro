@@ -15,7 +15,7 @@ export class ReactiveFormComponent implements OnInit {
   }
 
   constructor(fb: FormBuilder) {
-    /* Usinb builder */
+    /* Using builder */
     this.form =
       fb.group({
         fullName: ['', [Validators.required, Validators.minLength(5)]],
