@@ -1,0 +1,56 @@
+<p>task-section8 works!</p>
+<form class="form" action="POST" (ngSubmit)="onSubmit()">
+    <h2>User Details</h2>
+    <div class="input">
+        <input type="text" 
+        name="username" 
+        required
+        placeholder="Username" 
+        [value]="formInput.username ? formInput.username : ''"
+        (keyup)="onChangeInputs($event)">
+    </div>
+    <div class="input">
+        <input type="email" 
+        name="email" 
+        required
+        [value]="formInput.email ? formInput.email : ''"
+        placeholder="E-Mail" (keyup)="onChangeInputs($event)">
+    </div>
+    <div class="input">
+        <textarea name="adress" 
+        required
+        placeholder="Adress Details" 
+        cols="30" rows="10" 
+        [value]="formInput.adress ? formInput.adress : ''"
+        (keyup)="onChangeInputs($event)"></textarea>
+    </div>
+    <button type="submit">Save Data</button>
+</form>
+
+<div  *ngIf="datList.length > 0 then content; else emptyMessage">
+   
+</div>
+
+<ng-template  #content>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>E-Mail</th>
+                <th>Adress</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of datList; let i = index">
+                <td>{{user.id}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.adress}}</td>
+                <td><button (click)="removeIndex(i)">Remove</button></td>
+            </tr>
+        </tbody>
+    </table>
+</ng-template>
+<ng-template #emptyMessage><p class="empty">No Data to Display</p></ng-template>

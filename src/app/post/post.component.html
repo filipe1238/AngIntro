@@ -1,0 +1,15 @@
+<!-- <h5>{{title}}</h5>
+
+<p>message: {{fromParent}}</p>
+
+<app-postlist [messageFromParent] = "messagePost"></app-postlist>
+
+<button (click)="sendMessage()">Add Post</button>
+ -->
+
+ <!-- Post list from service -->
+ <ul>
+    <li *ngFor="let post of loadedPosts">
+        {{post.title}}
+    </li>
+ </ul>

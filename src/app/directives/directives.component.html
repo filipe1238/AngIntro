@@ -1,0 +1,31 @@
+<p>{{postArray}}</p>
+
+<!-- <h4>NGFOR</h4>
+<ul>
+    <li *ngFor="let post of postArray">
+        {{post}}
+    </li>
+</ul> -->
+
+<h2>ngFor OBJECTS with ngIf directives</h2>
+<button (click)="addNewObject()">Add New Post</button>
+<div *ngIf="objArray.length > 0 then content; else emptyMessage">
+   
+</div>
+<p>ng template is never rendered directly, unless you call it using a directive</p>
+<ng-template #emptyMessage>
+    <p>There is not more Posts ...</p>
+</ng-template>
+
+<ng-template #content>
+    <ul>
+        <li *ngFor="let post of objArray; let indexDeclared = index;">
+            {{post | json}}
+            <p>index: {{indexDeclared}}</p>
+            <h6>{{post.post}}</h6>
+            <p>{{post.content}}</p>
+            <button (click)="deleteObject(post)">Delete passing Obj</button>
+            <button (click)="deleteObjectFromIndex(indexDeclared)">Delete passing Index</button>
+        </li>
+    </ul>
+</ng-template>

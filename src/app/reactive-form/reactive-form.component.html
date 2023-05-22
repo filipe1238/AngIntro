@@ -1,0 +1,90 @@
+<div class="form-area container mt-5">
+  <!-- Template driven form -->
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label for="">Full Name</label>
+      <!-- Must have names -->
+      <input required formControlName='fullName' class="form-control" type="text" name="fullName"
+        placeholder="Full Name">
+
+      <div class="alert alert-danger" *ngIf="form.get('fullName').touched && form.get('fullName').invalid">
+        <div *ngIf="form.get('fullName').errors.required">
+          Full Name is required
+        </div>
+        <div *ngIf="form.get('fullName').errors.minlength">
+          Full Name must be at least 5 characters long.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="form-group">
+      <label for="">Email</label>
+      <input formControlName="email" pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-zA-Z]{2,4}" class="form-control"
+        type="email" name="email" placeholder="Email">
+
+      <div class="alert alert-danger" *ngIf="form.get('email').touched && form.get('email').invalid">
+        <div *ngIf="form.get('email').errors.required">
+          Email is required
+        </div>
+        <div *ngIf="form.get('email').errors.pattern">
+          Email is invalid </div>
+      </div>
+    </div>
+    <!-- Contact details form group -->
+    <div formGroupName="contactDetails">
+      <div class="form-group">
+        <label for="">Adress</label>
+        <textarea class="form-control" formControlName="adress" name="adress" placeholder="Adress" id="" cols="30"
+          rows="10"></textarea>
+
+        <div class="alert alert-danger"
+          *ngIf="form.get('contactDetails.adress').touched && form.get('contactDetails.adress').invalid">
+          <div *ngIf="form.get('contactDetails.adress').errors.required">
+            adress is required
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="">Shipping Adress</label>
+        <textarea class="form-control" formControlName="shippingAdress" name="shippingAdress" placeholder="Adress" id=""
+          cols="30" rows="10"></textarea>
+
+        <div class="alert alert-danger"
+          *ngIf="form.get('contactDetails.shippingAdress').touched && form.get('contactDetails.shippingAdress').invalid">
+          <div *ngIf="form.get('contactDetails.shippingAdress').errors.required">
+            adress is required
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="">Contact Nº</label>
+        <input formControlName="contactNo" class="form-control" type="contactNo" name="contactNo"
+          placeholder="contactNo">
+        <div class="alert alert-danger"
+          *ngIf="form.get('contactDetails.contactNo').touched && form.get('contactDetails.contactNo').invalid">
+          <div *ngIf="form.get('contactDetails.contactNo').errors.required">
+            Contact is required
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="">Skills</label>
+      <input type="text" class="form-control" #skill (keyup.enter)="addSkills(skill)">
+
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let skill of Skills.controls; let i = index">
+          {{skill.value}}
+          <a (click)="removeSkill(i)" class="btn btn-sm btn-danger">X</a>
+        </li>
+      </ul>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
