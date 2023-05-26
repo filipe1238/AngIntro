@@ -1,0 +1,8 @@
+<div *ngFor="let post of posts">
+  <h5>{{post.title}}</h5>
+  <p>{{post.content.slice(0, 50)}} ...</p>
+  <button [routerLink]="['/post', post.id, post.title]">View More</button>
+  <hr>
+
+<!--   <app-single-post [ngIf]="false"></app-single-post> -->
+</div>
